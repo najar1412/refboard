@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>{{thingy.thing}}<br>{{thingy}}</h1>
+<hr>
+
+
+
+<h1>Reference</h1>
+
+{% for ref_material in thingy.ref_materials.all %}
+{{ref_material}},
+{% endfor %}
+
+{% endblock %}

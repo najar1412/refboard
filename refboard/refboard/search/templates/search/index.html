@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+SEARCH
+<hr>
+search bar
+<hr>
+
+{% for ref in ref_materials %}
+<a href="/search/{{ref.id}}/">{{ref}}</a>,
+{% endfor %}
+
+
+<br>
+<br>
+<br>
+<br>
+
+<small>{{data_test}}</small>
+{% endblock %}
