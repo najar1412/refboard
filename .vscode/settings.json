@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "C:\\Users\\render\\.virtualenvs\\refboard-cIM-3fbd\\Scripts\\python.exe"
+    "python.pythonPath": "C:\\Users\\roryj\\.virtualenvs\\refboard-cIM-3fbd\\Scripts\\python.exe",
+    "python.formatting.provider": "black"
 }
