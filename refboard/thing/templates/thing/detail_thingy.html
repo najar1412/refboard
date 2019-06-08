@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load static %}
+
 {% block content %}
 
 <h1>{{thingy.thing}}<br>{{thingy}}</h1>
@@ -8,8 +10,9 @@
 
 <h1>Reference</h1>
 
-{% for ref_material in thingy.ref_materials.all %}
-<a href="/search/{{ref_material.id}}">{{ref_material}}</a>,
+{% for ref in thingy.ref_materials.all %}
+<a href="/search/{{ref.id}}/"><img style="width: 200px;height: auto;"
+        src="{% static 'search/img/temp/'|add:ref.filename %}"></a>
 {% endfor %}
 
 {% endblock %}

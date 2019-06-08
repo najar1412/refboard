@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 SEARCH
@@ -7,14 +8,47 @@ search bar
 <hr>
 
 {% for ref in ref_materials %}
-<a href="/search/{{ref.id}}/">{{ref}}</a>,
+<a href="/search/{{ref.id}}/"><img style="width: 200px;height: auto;"
+        src="{% static 'search/img/temp/'|add:ref.filename %}"></a>
 {% endfor %}
 
 
+
 <br>
 <br>
 <br>
 <br>
+
+
+
+{% if thing %}
+<h1><a href="/thing/{{thing.id}}/search/">{{thing.name}}</a></h1>
+
+
+
+<small>
+    [<a href="/thing/editthing/">edit thing</a>, <a href="/thing/delete/{{thing.id}}">delete thing</a>]<br>
+    {{thing.client}}
+</small>
+<form action="/thing/{{thing.id}}/thingy/add/" method="post">
+    {% csrf_token %}
+    {{ new_thingy_form }}
+    <input type="submit" value="Add">
+</form>
+
+<br><br>
+
+
+{% for thingy in thing.things.all %}
+> <a href="/thing/thingy/{{thingy.id}}">{{thingy}}</a> [<a href="/thing/editthingy">edit</a>, <a
+    href="/thing/thingy/delete/{{thingy.id}}">delete</a>]<br>
+{% endfor %}
+<p></p>
+
+{% endif %}
+
+
+
 
 <small>{{data_test}}</small>
 {% endblock %}

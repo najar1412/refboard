@@ -5,28 +5,34 @@ THINGS
 
 <form action="{% url 'thing:add_thing' %}" method="post">
     {% csrf_token %}
-    <input type="input" name="thing_name">
+    {{ new_thing_form }}
     <input type="submit" value="Add">
 </form>
 
 <hr>
 
 
-
 {% for thing in things %}
-<h1>{{thing.name}}</h1>
+<h1><a href="/thing/{{thing.id}}/search/">{{thing.name}}</a></h1>
+
+
+
 <small>
-    [<a href="/thing/createthingy">add a thingy</a>, <a href="/thing/editthing/">edit thing</a>, <a
-        href="/thing/deletething">delete thing</a>]<br>
+    [<a href="/thing/editthing/">edit thing</a>, <a href="/thing/delete/{{thing.id}}">delete thing</a>]<br>
     {{thing.client}}
 </small>
+<form action="/thing/{{thing.id}}/thingy/add/" method="post">
+    {% csrf_token %}
+    {{ new_thingy_form }}
+    <input type="submit" value="Add">
+</form>
 
 <br><br>
 
 
 {% for thingy in thing.things.all %}
 > <a href="/thing/thingy/{{thingy.id}}">{{thingy}}</a> [<a href="/thing/editthingy">edit</a>, <a
-    href="/thing/deletethingy">delete</a>]<br>
+    href="/thing/thingy/delete/{{thingy.id}}">delete</a>]<br>
 {% endfor %}
 <p></p>
 
