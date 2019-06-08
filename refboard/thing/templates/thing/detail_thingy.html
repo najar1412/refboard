@@ -9,7 +9,7 @@
 <h1>Reference</h1>
 
 {% for ref_material in thingy.ref_materials.all %}
-{{ref_material}},
+<a href="/search/{{ref_material.id}}">{{ref_material}}</a>,
 {% endfor %}
 
 {% endblock %}

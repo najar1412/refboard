@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 
-THINGS <small>[<a href="/thing/creatething">create a thing</a>]</small>
+THINGS
+
+<form action="{% url 'thing:add_thing' %}" method="post">
+    {% csrf_token %}
+    <input type="input" name="thing_name">
+    <input type="submit" value="Add">
+</form>
+
 <hr>
 
 
@@ -9,7 +16,8 @@ THINGS <small>[<a href="/thing/creatething">create a thing</a>]</small>
 {% for thing in things %}
 <h1>{{thing.name}}</h1>
 <small>
-    [<a href="/thing/createthingy">add a thingy</a>, <a href="/thing/editthing/">edit thing</a>, <a href="/thing/deletething">delete thing</a>]<br>
+    [<a href="/thing/createthingy">add a thingy</a>, <a href="/thing/editthing/">edit thing</a>, <a
+        href="/thing/deletething">delete thing</a>]<br>
     {{thing.client}}
 </small>
 
@@ -17,7 +25,8 @@ THINGS <small>[<a href="/thing/creatething">create a thing</a>]</small>
 
 
 {% for thingy in thing.things.all %}
-     > <a href="/thing/thingy/{{thingy.id}}">{{thingy}}</a> [<a href="/thing/editthingy">edit</a>, <a href="/thing/deletethingy">delete</a>]<br>
+> <a href="/thing/thingy/{{thingy.id}}">{{thingy}}</a> [<a href="/thing/editthingy">edit</a>, <a
+    href="/thing/deletethingy">delete</a>]<br>
 {% endfor %}
 <p></p>
 
