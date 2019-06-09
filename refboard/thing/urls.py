@@ -12,4 +12,7 @@ urlpatterns = [
     path("thingy/<int:thingy_id>/", views.detail_thingy, name="detail_thingy"),
     path("add/", views.add_thing, name="add_thing"),
     path("<int:thing_id>/thingy/add/", views.add_thingy, name="add_thingy"),
+    path(
+        "append_to_thing/<int:thingy_id>", views.append_to_thing, name="append_to_thing"
+    ),
 ]

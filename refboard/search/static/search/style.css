@@ -1,0 +1,37 @@
+#search-content {
+    display: flex;
+    width: 100%;
+}
+#left-nav {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+}
+#right-nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+
+
+
+
+.masonry {
+  columns: 1;
+  column-gap: 0px;
+}
+.masonry-item {
+  display: inline-block;
+  vertical-align: top;
+}
+@media only screen and (max-width: 1023px) and (min-width: 768px) {  .masonry {
+    columns: 2;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .masonry {
+    columns: 4;
+  }
+}

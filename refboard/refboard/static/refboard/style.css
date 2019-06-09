@@ -1,23 +1,18 @@
-html {
-    margin: 0px;
-    padding: 0px;
-    border: 0px;
-}
-body { margin:0; } /* Remove body margins */
+body { margin:0;} /* Remove body margins */
 .site-header {
-    display: flex;
     background: rgb(30,87,153);
     background: -moz-linear-gradient(top,  rgb(30,87,153) 0%, rgb(55,55,55) 0%, rgb(55,55,55) 0%, rgb(55,55,55) 0%, rgb(33,33,33) 100%, rgb(32,124,202) 100%);
     background: -webkit-linear-gradient(top,  rgb(30,87,153) 0%,rgb(55,55,55) 0%,rgb(55,55,55) 0%,rgb(55,55,55) 0%,rgb(33,33,33) 100%,rgb(32,124,202) 100%);
     background: linear-gradient(to bottom,  rgb(30,87,153) 0%,rgb(55,55,55) 0%,rgb(55,55,55) 0%,rgb(55,55,55) 0%,rgb(33,33,33) 100%,rgb(32,124,202) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#207cca',GradientType=0 );
     width: 100%;
-    height: 250px;
+    height: 175px;
 }
 .site-header-content {
     display: flex;
     flex-direction: column;
-    padding: 50px;
+    padding: 20px;
+    padding-left: 50px;
 }
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
@@ -39,6 +34,7 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: underline;
 }
 .site-body {
+    overflow: visible;
     color: black;
 }
 .site-body > a {
@@ -49,3 +45,13 @@ h1, h2, h3, h4, h5, h6 {
   color: black;
   font-weight: 900;
 }
+.thing_footer {
+    display:inline-block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: red;
+    opacity: .5;
+    width: 300px;
+    height: 100%;
+  }

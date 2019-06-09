@@ -1,3 +1,5 @@
+from ast import literal_eval
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -18,6 +20,31 @@ def index(request):
     }
 
     return render(request, "thing/index.html", context)
+
+
+def _helper_parse_dropped_ref(data):
+    ref_objs = []
+    for raw_ref_id in data:
+        try:
+            cleaned = int(raw_ref_id.split("_")[-1])
+            ref = RefMaterial.objects.get(id=cleaned)
+            ref_objs.append(ref)
+        except:
+            pass
+
+    return ref_objs
+
+
+def append_to_thing(request, thingy_id):
+    if request.method == "POST":
+        for k, v in request.POST.items():
+            ref_ids = _helper_parse_dropped_ref(literal_eval(k))
+            thingy = Thingy.objects.get(id=thingy_id)
+            thingy.ref_materials.add(*ref_ids)
+
+        return HttpResponseRedirect(reverse("thing:index"))
+
+    return redirect("thing:index")
 
 
 def detail_thing(request, thing_id):
@@ -62,9 +89,10 @@ def add_thingy(request, thing_id):
             new_thingy.thing = Thing.objects.get(id=thing_id)
             new_thingy.save()
 
-            return HttpResponseRedirect(reverse("thing:index"))
+            # return HttpResponseRedirect(reverse("thing:index"))
+            return HttpResponseRedirect(f"/thing/{thing_id}/search/")
 
-    return redirect("thing:index")
+    return HttpResponseRedirect(reverse("thing:index"))
 
 
 def delete_thing(request, thing_id):

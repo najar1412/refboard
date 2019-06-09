@@ -2,53 +2,107 @@
 {% load static %}
 
 {% block content %}
-SEARCH
-<hr>
-search bar
-<hr>
 
-{% for ref in ref_materials %}
-<a href="/search/{{ref.id}}/"><img style="width: 200px;height: auto;"
-        src="{% static 'search/img/temp/'|add:ref.filename %}"></a>
-{% endfor %}
+<div id="search-content">
+    <div id="left-nav">
 
 
+        {% if thing %}
 
-<br>
-<br>
-<br>
-<br>
+
+        <h1><a href="/thing/{{thing.id}}/search/">{{thing.name}}</a></h1>
 
 
 
-{% if thing %}
-<h1><a href="/thing/{{thing.id}}/search/">{{thing.name}}</a></h1>
+        <div>
+            {{thing.client}}<br>
+            [<a href="/thing/editthing/">edit thing</a>, <a href="/thing/delete/{{thing.id}}">delete thing</a>]
+
+        </div>
+
+        <br>
+
+        <form action="/thing/{{thing.id}}/thingy/add/" method="post">
+            {% csrf_token %}
+            {{ new_thingy_form }}
+            <input type="submit" value="Add">
+        </form>
+
+        <br><br>
+
+
+        {% for thingy in thing.things.all %}
+
+        <a href="/thing/thingy/{{thingy.id}}">{{thingy}}</a>
+        {% for ref in thingy.ref_materials.all %}
+        {{ref}}
+        {% endfor %}
+        <div>
+            [<a href="/thing/editthingy">edit</a>, <a href="/thing/thingy/delete/{{thingy.id}}">delete</a>]
+        </div>
+        <div class="drop-zone">
+            <div style="height: 50px; width: 95%;" id="dest_move" ondrop="drop_handler(event);"
+                ondragover="dragover_handler(event);">
+                drop zone<br>
+            </div>
+            <input type="button" value="Update Reference" onclick="collectRefMatIds('{{thingy.id|safe}}');" />
+        </div>
+
+        {% endfor %}
 
 
 
-<small>
-    [<a href="/thing/editthing/">edit thing</a>, <a href="/thing/delete/{{thing.id}}">delete thing</a>]<br>
-    {{thing.client}}
-</small>
-<form action="/thing/{{thing.id}}/thingy/add/" method="post">
-    {% csrf_token %}
-    {{ new_thingy_form }}
-    <input type="submit" value="Add">
-</form>
-
-<br><br>
+        {% endif %}
 
 
-{% for thingy in thing.things.all %}
-> <a href="/thing/thingy/{{thingy.id}}">{{thingy}}</a> [<a href="/thing/editthingy">edit</a>, <a
-    href="/thing/thingy/delete/{{thingy.id}}">delete</a>]<br>
-{% endfor %}
-<p></p>
 
-{% endif %}
+    </div>
+    <div id="right-nav">
 
+
+
+
+
+        <div class="masonry">
+
+            {% for ref in ref_materials %}
+            <div class="masonry-item" draggable="true" id="src_move_{{ref.id}}" ondragstart="dragstart_handler(event);"
+                ondragend="dragend_handler(event);">
+                <a draggable="false" href="/search/{{ref.id}}/">
+                    <img style="width: 100%; display: block;" draggable="false"
+                        src="{% static 'search/img/temp/'|add:ref.filename %}">
+                </a>
+            </div>
+            {% endfor %}
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
 
 
 
 <small>{{data_test}}</small>
+
+
 {% endblock %}
