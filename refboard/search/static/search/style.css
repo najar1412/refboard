@@ -1,16 +1,17 @@
-#search-content {
-    display: flex;
-    width: 100%;
+.search-content {
+  margin: 0;
 }
 #left-nav {
-    display: flex;
-    flex-direction: column;
-    max-width: 300px;
+    position: sticky;
+    float: left;
+    top: 0;
+    width: 300px;
+    height: 100vh;
+    background-color: rgb(230, 230, 230);
+    padding-right: 13px;
+    
 }
 #right-nav {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     width: 100%;
 }
 
@@ -35,3 +36,14 @@
     columns: 4;
   }
 }
+
+
+
+.masonry-small {
+    columns: 4;
+    column-gap: 0px;
+  }
+  .masonry-small-item {
+    display: inline-block;
+    vertical-align: top;
+  }

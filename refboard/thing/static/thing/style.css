@@ -1,0 +1,114 @@
+.submenu {
+  display:flex;
+  padding: 20px;
+  background-color: white;
+  border-bottom-style: solid;
+  border-bottom-color: rgb(200, 200, 200);;
+  border-bottom-width: 1px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 10px;
+}
+.item {
+  background-color: white;
+  margin: 10px;
+  border: 1px solid rgb(225, 225, 225);
+  border-radius: 5px;
+}
+.item-header-title > h3 > a {
+  color: #1a7dc1;
+  text-decoration: none;
+}
+.item-header-title > h3 > a:hover {
+  text-decoration: underline;
+}
+.item-header {
+  display: flex;
+}
+.item-header-img {
+  display: flex;
+  margin-left: 20px;
+}
+.item-header-img > img {
+  background-color: rgb(200, 200, 200);
+  height: 50px;
+  width: 50px;
+}
+.item-header-content {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  padding-left: 50px;
+  flex-direction: column;
+}
+.item-header-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.item-header-title > h3, h5 {
+  margin: 0px;
+}
+.item-body {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.item-body > a {
+  color: #0170bf;
+  font-weight: 900;
+}
+.thingy-content {
+  display: flex;
+  flex-direction: column;
+}
+.thingy-content-header {
+  display: flex;
+  align-items: center;
+}
+.thingy-content-header > h3, a {
+  color: #0170bf;
+  font-weight: 900;
+  text-decoration: none;
+}
+.thingy-content-header > h3, a:hover {
+  color: #0170bf;
+  font-weight: 900;
+  text-decoration: underline;
+}
+.ribbon {
+  background: #3d4957;
+  height: 30px;
+  margin: 0 auto;
+  position: absolute;
+  width: 35px;
+  text-align:center;
+  vertical-align:middle;
+  line-height:10px;
+  font-size:12px;
+  color:#f2f2f2;
+  border-top-style: solid;
+  border-top-color: #20a1d8;
+  border-top-width: 5px;
+  padding-top: 15px;
+}
+.ribbon:after,
+.ribbon:before {
+  content: '';
+  position: absolute;
+  border-top: 10px solid #3d4957;
+  height: 0;
+  width: 0;
+  top: 100%;
+}
+.ribbon:after {
+  border-left: 30px solid transparent;
+  right: 0px;
+}
+.ribbon:before {
+  border-right: 30px solid transparent;
+  left: 0px;
+}

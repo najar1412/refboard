@@ -5,6 +5,8 @@ from django.utils import timezone
 class RefMaterial(models.Model):
     name = models.CharField("name", max_length=255)
     filename = models.CharField("filename", max_length=255)
+    thumbnail = models.CharField("thumbnail", max_length=255)
+    medium = models.CharField("medium", max_length=255)
 
     def __str__(self):
         return self.name

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 SEARCH
@@ -7,7 +8,9 @@ search bar
 <hr>
 
 {{ref_material}}
-
+<div style="height: 80vh">
+    <img style="height: 100%;" src="{% static 'search/img/temp/'|add:ref_material.filename %}">
+</div>
 
 <br>
 <br>

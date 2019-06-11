@@ -10,9 +10,26 @@
 
 <h1>Reference</h1>
 
-{% for ref in thingy.ref_materials.all %}
-<a href="/search/{{ref.id}}/"><img style="width: 200px;height: auto;"
-        src="{% static 'search/img/temp/'|add:ref.filename %}"></a>
-{% endfor %}
+
+<div class="masonry">
+
+        {% for ref in thingy.ref_materials.all %}
+        <div class="masonry-item">
+                <a href="/search/{{ref.id}}/">
+                        <img style="width: 100%; display: block;" src="{% static 'search/img/temp/'|add:ref.medium %}">
+                </a>
+        </div>
+        {% endfor %}
+
+
+</div>
+
+
+
+
+
+
+
+
 
 {% endblock %}

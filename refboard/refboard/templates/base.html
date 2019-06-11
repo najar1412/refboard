@@ -4,8 +4,15 @@
 <html lang="en">
 
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="{% static 'refboard/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'refboard/simplebar.css' %}">
+  <script src="{% static 'refboard/js/dropzone.js' %}"></script>
   <link rel="stylesheet" type="text/css" href="{% static 'search/style.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'thing/style.css' %}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simplebar/4.0.0/simplebar.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplebar/4.0.0/simplebar.css" />
+
   <title></title>
 
 
@@ -18,6 +25,19 @@
     }
   </style>
   <script>
+
+    Dropzone.options.myAwesomeDropzone = {
+      paramName: "file", // The name that will be used to transfer the file
+      maxFilesize: 20, // MB
+      uploadMultiple: true,
+      // accept: function (file, done) {
+      //   if (file.name == "test.jpg") {
+      //     done("Naha, you don't.");
+      //   }
+      //   else { done(); }
+      // }
+    };
+
     function dragstart_handler(ev) {
       console.log("dragStart");
       // Change the source element's background color to signify drag has started
@@ -32,8 +52,14 @@
       console.log("dragOver");
       // Change the target element's border to signify a drag over event
       // has occurred
-      ev.currentTarget.style.background = "lightblue";
       ev.preventDefault();
+      ev.currentTarget.style.background = "lightblue";
+      ev.currentTarget.style.border = "5px dashed";
+
+    }
+    function dragleave_handler(ev) {
+      ev.currentTarget.style.background = "none";
+      ev.currentTarget.style.border = "5px solid blue";
     }
     function drop_handler(ev) {
       console.log("Drop");
@@ -49,6 +75,7 @@
 
         ev.target.appendChild(draggable);
         ev.target.height = "auto";
+        ev.target.style.border = "none";
       }
     }
 
@@ -59,6 +86,8 @@
       // Resize drop zone
       var dropzone = ev.path[1];
       dropzone.style.height = "auto";
+      dropzone.style.background = "none";
+      dropzone.style.border = "5px solid blue";
       // Remove all of the drag data
       ev.dataTransfer.clearData();
     }
@@ -91,16 +120,18 @@
 </head>
 
 <body>
+
   <div class="site-header">
-    <div class="site-header-content">
-      <h1 class="site-title">RefBoard</h1>
-      <h2 class="site-menu">
-        <a href="/thing/">Things</a>
-        <a href="/search/">Search</a>
-        <a href="/upload/">Upload</a>
-      </h2>
-    </div>
+    <h1 class="site-title">sourced</h1>
+    <h2 class="site-menu">
+      <a href="/thing/">things</a>
+      <a href="/search/">search</a>
+      <a href="/upload/">upload</a>
+    </h2>
   </div>
+
+
+
   <div class="site-body">
     {% block content %}{% endblock %}
   </div>
