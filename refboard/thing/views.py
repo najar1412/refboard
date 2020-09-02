@@ -60,6 +60,18 @@ def detail_thing(request, thing_id):
     return render(request, "search/index.html", context)
 
 
+def view_thing(request, thing_id):
+    thing = Thing.objects.get(id=thing_id)
+    thingys = Thingy.objects.filter(thing=thing.id)
+    print(thingys)
+    context = {
+        "thing": thing,
+        'thingys': thingys
+        }
+
+    return render(request, "thing/view_thing.html", context)
+
+
 def detail_thingy(request, thingy_id):
     thingy = Thingy.objects.get(id=thingy_id)
     context = {"thingy": thingy}

@@ -3,18 +3,31 @@
 
 {% block content %}
 
-<h1>{{thingy.thing}}<br>{{thingy}}</h1>
-<hr>
-
-
-
-<h1>Reference</h1>
-
-
 <div class="masonry">
 
         {% for ref in thingy.ref_materials.all %}
-        <div class="masonry-item">
+        <div class="masonry-item" style="position: relative;">
+                <div class="masonry-info">
+                        <i class="masonry-info-type" data-feather="image"></i>
+                        <div style="display: flex;">
+                                <i class="masonry-info-avatar"
+                                        style="background-image: url({% static 'thing/img/user01.jpg' %});">
+                                </i>
+                                <i class="masonry-info-avatar"
+                                        style="background-image: url({% static 'thing/img/user01.jpg' %});">
+                                </i>
+                        </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
                 <a href="/search/{{ref.id}}/">
                         <img style="width: 100%; display: block;" src="{% static 'search/img/temp/'|add:ref.medium %}">
                 </a>
@@ -23,10 +36,6 @@
 
 
 </div>
-
-
-
-
 
 
 

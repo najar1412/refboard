@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div id="lb-container" onclick="closeOnClick(this)">
+
+    <img style="width: 100%; display: block;" src="{% static 'search/img/temp/01_2015_cgarchitects_large.jpg' %}">
+
+</div>
+
+
+<div class="masonry">
+
+    {% for thingy in thingys %}
+
+    {% for ref in thingy.ref_materials.all %}
+    {% if ref.m_type == 'image' %}
+    <div class="masonry-item" style="position: relative;cursor: pointer;"
+        onclick="showLightbox(this, '{% static 'search/img/temp/'|add:ref.medium %}')">
+        <div class="masonry-info">
+            <i class="masonry-info-type" data-feather="image"></i>
+            <div style="display: flex;">
+                <i class="masonry-info-avatar" style="background-image: url({% static 'thing/img/user01.jpg' %});">
+                </i>
+                <i class="masonry-info-avatar" style="background-image: url({% static 'thing/img/user01.jpg' %});">
+                </i>
+            </div>
+        </div>
+
+        <img style="width: 100%; display: block;" src="{% static 'search/img/temp/'|add:ref.medium %}">
+
+    </div>
+    {% elif ref.m_type == 'video' %}
+    <div class="masonry-item" style="position: relative;cursor: pointer;"
+        onclick="showLightbox(this, '{% static 'search/img/temp/'|add:ref.medium %}')">
+        <div class="masonry-info">
+            <i class="masonry-info-type" data-feather="film"></i>
+            <div style="display: flex;">
+                <i class="masonry-info-avatar" style="background-image: url({% static 'thing/img/user01.jpg' %});">
+                </i>
+                <i class="masonry-info-avatar" style="background-image: url({% static 'thing/img/user01.jpg' %});">
+                </i>
+            </div>
+        </div>
+
+        <img style="width: 100%; display: block;" src="{% static 'search/img/temp/'|add:ref.medium %}">
+
+    </div>
+    {% elif ref.m_type == 'website' %}
+    <div class="masonry-item" style="position: relative;cursor: pointer;"
+        onclick="showLightbox(this, '{% static 'search/img/temp/'|add:ref.medium %}')">
+        <div class="masonry-info">
+            <i class="masonry-info-type" data-feather="image"></i>
+            <div style="display: flex;">
+                <i class="masonry-info-avatar" style="background-image: url({% static 'thing/img/user01.jpg' %});">
+                </i>
+                <i class="masonry-info-avatar" style="background-image: url({% static 'thing/img/user01.jpg' %});">
+                </i>
+            </div>
+        </div>
+
+        <img style="width: 100%; display: block;" src="{% static 'search/img/temp/'|add:ref.medium %}">
+
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {% endfor %}
+</div>
+
+
+
+<script>
+    let showLightbox = function (el, data) {
+        console.log(el)
+        console.log(data)
+        let lb = document.getElementById('lb-container')
+        lb.style.display = 'flex';
+        lb.children[0].src = data;
+    }
+
+    let closeOnClick = function (el) {
+        el.style.display = 'none'
+    }
+</script>
+
+
+
+
+
+{% endblock %}
